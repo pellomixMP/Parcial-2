@@ -1,0 +1,11 @@
+/* styles.css */
+
+.task-realizada {
+    color: green;
+    text-decoration: line-through;
+}
+
+.task-pendiente {
+    color: red;
+    text-decoration: none;
+}

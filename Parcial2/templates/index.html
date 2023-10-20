@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <form method="POST" action="/add">
+        <label for="task_description">Descripción de la Tarea:</label>
+        <input type="text" id="task_description" name="task_description" required>
+        
+        <label for="task_status">Estado de la Tarea:</label>
+        <select id="task_status" name="task_status" required>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Realizada">Realizada</option>
+        </select>
+
+        <input type="submit" value="Agregar Tarea">
+    </form>
+
+    <h2>Lista de Tareas:</h2>
+    <ul>
+        {% for task in tasks %}
+            <li class="{% if task.Estado == 'Realizada' %}task-realizada{% else %}task-pendiente{% endif %}">
+                {{ task.Descripción }} - {{ task.Estado }}
+                <form method="POST" action="/delete/{{ task.ID }}" style="display: inline;">
+                    <input type="submit" value="Eliminar">
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+
+
